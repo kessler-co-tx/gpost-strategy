@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 const Badge = ({ type }: { type: "Verified" | "Interpretation" | "Hypothesis" }) => (
   <span className={`badge ${type.toLowerCase()}`}><i />{type}</span>
@@ -9,6 +11,7 @@ const Badge = ({ type }: { type: "Verified" | "Interpretation" | "Hypothesis" })
 const Check = ({ children }: { children: React.ReactNode }) => <li><span>✓</span>{children}</li>;
 
 export default function Home() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [active, setActive] = useState("strategy");
   const [open, setOpen] = useState<number | null>(0);
   const navigate = (id: string) => {
@@ -25,13 +28,15 @@ export default function Home() {
     <main>
       <header className="topbar">
         <button className="brand" onClick={() => navigate("strategy")} aria-label="Return to top">
-          <span className="mark">G<span>•</span></span>
-          <span>GPOST<br/><small>Growth Strategy</small></span>
+          <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-reference.png`} alt="GPOST — need to know" />
+          <img className="brand-icon" src={`${basePath}/brand/gpost-icon-reference.png`} alt="" />
+          <span className="strategy-name">GPOST<br/><small>Growth Strategy</small></span>
         </button>
         <nav aria-label="Strategy sections">
           {nav.map(([id, label]) => <button key={id} className={active === id ? "active" : ""} onClick={() => navigate(id)}>{label}</button>)}
         </nav>
-        <button className="brief" onClick={() => navigate("roadmap")}>Executive roadmap <span>→</span></button>
+        <Link className="brand-guide-link" href="/brand">Brand system</Link>
+        <ThemeToggle />
       </header>
 
       <section id="strategy" className="hero">
@@ -44,14 +49,7 @@ export default function Home() {
             <div className="legend"><Badge type="Verified"/><Badge type="Interpretation"/><Badge type="Hypothesis"/></div>
           </div>
         </div>
-        <div className="hero-visual" aria-label="GPOST strategy flywheel">
-          <div className="orbit orbit-one"/><div className="orbit orbit-two"/>
-          <div className="node n1"><b>01</b><span>Verified<br/>place</span></div>
-          <div className="node n2"><b>02</b><span>Relevant<br/>message</span></div>
-          <div className="node n3"><b>03</b><span>Trusted<br/>action</span></div>
-          <div className="node n4"><b>04</b><span>Learning<br/>loop</span></div>
-          <div className="core"><strong>G<span>•</span></strong><small>PLACE-BASED<br/>OPERATING LAYER</small></div>
-        </div>
+        <div className="hero-map-wrap"><img className="hero-map-art" src={`${basePath}/brand/geographic-strategy-reference.png`} alt="A geographic network connecting place, communication, people, and trusted action" /></div>
         <div className="thesis-strip">
           <span>THE STRATEGIC THESIS</span>
           <p>Communication earns attention. <b>Action creates value.</b> Operations earns trust at scale.</p>
@@ -209,7 +207,7 @@ export default function Home() {
         <button onClick={() => navigate("strategy")}>Return to the thesis ↑</button>
       </section>
 
-      <footer><span>GPOST GROWTH STRATEGY · AUGUST 2026</span><span>Public sources: <a href="https://www.gpost.com/about.php" target="_blank" rel="noreferrer">Purpose</a> · <a href="https://www.gpost.com/technology.php" target="_blank" rel="noreferrer">Technology</a> · <a href="https://www.gpost.com/faqs.php" target="_blank" rel="noreferrer">Product FAQ</a>. Recruiter context and strategic hypotheses are labeled separately.</span></footer>
+      <footer><span>GPOST GROWTH STRATEGY · AUGUST 2026 · <Link href="/brand">BRAND SYSTEM</Link></span><span>Public sources: <a href="https://www.gpost.com/about.php" target="_blank" rel="noreferrer">Purpose</a> · <a href="https://www.gpost.com/technology.php" target="_blank" rel="noreferrer">Technology</a> · <a href="https://www.gpost.com/faqs.php" target="_blank" rel="noreferrer">Product FAQ</a>. Recruiter context and strategic hypotheses are labeled separately.</span></footer>
     </main>
   );
 }

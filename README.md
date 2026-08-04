@@ -10,6 +10,8 @@ An executive strategy site prepared for Joe Kessler's GPOST General Manager cand
 - A composable AI and technology architecture with responsible-data guardrails
 - A practical 30/60/90-day and 3–12-month roadmap
 - Executive decisions leadership should resolve before committing capital
+- A persistent light/dark presentation system
+- An interactive `/brand` guide with approved assets, design tokens, and additional-page instructions
 
 ## Evidence standard
 
@@ -36,6 +38,11 @@ app/
   page.tsx           Strategy narrative and interactions
 public/
   og.png             Bespoke social preview card
+  brand/             GPOST reference marks, geographic system, and downloadable guide
+docs/
+  BRAND_SYSTEM.md    Detailed instructions for extending the site
+.github/workflows/
+  deploy-pages.yml   Automatic public GitHub Pages publishing
 .openai/
   hosting.json       Sites deployment configuration
 ```
@@ -55,8 +62,16 @@ Production build:
 npm run build
 ```
 
+Static GitHub Pages build:
+
+```bash
+pnpm run build:pages
+```
+
 ## Publishing
 
-The repository is ready to push to GitHub. For a public presentation site, Cloudflare Pages is the recommended no-cost long-term host. GitHub Pages is the simplest option if the repository may be public and the site is exported as static files; Vercel is excellent for a Next.js workflow but its free Hobby plan is positioned for personal projects; Netlify's free plan uses a monthly credit allowance.
+The repository deploys automatically to GitHub Pages whenever `main` changes. The workflow creates a static export and publishes it at `https://kessler-co-tx.github.io/gpost-strategy/`.
+
+The existing Sites deployment remains available independently. GitHub is now the source of truth for public version history and GitHub Pages publishing.
 
 Before sharing externally, confirm that every recruiter-derived fact is appropriate to publish and decide whether the URL should be public or restricted.
