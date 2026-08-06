@@ -12,8 +12,8 @@ export function StrategyHeader({ active, basePath, navigate }: { active: string;
   return (
     <header className="topbar">
       <button className="brand" onClick={() => navigate("strategy")} aria-label="Return to top">
-        <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-reference.png`} alt="GPOST — need to know" />
-        <img className="brand-icon" src={`${basePath}/brand/gpost-icon-reference.png`} alt="" />
+        <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-transparent.png`} alt="GPOST — need to know" />
+        <img className="brand-icon" src={`${basePath}/brand/gpost-icon-transparent.png`} alt="" />
         <span className="strategy-name">GPOST<br/><small>Growth Strategy</small></span>
       </button>
       <nav aria-label="Strategy sections">

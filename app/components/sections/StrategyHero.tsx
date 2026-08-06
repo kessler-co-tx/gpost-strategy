@@ -15,6 +15,7 @@ export function StrategyHero({ basePath, navigate }: { basePath: string; navigat
         </div>
       </div>
       <div className="hero-map-wrap"><img className="hero-map-art" src={`${basePath}/brand/geographic-strategy-reference.png`} alt="A geographic network connecting place, communication, people, and trusted action" /></div>
+      <div className="hero-cover-frame" aria-hidden="true"><i/><i/><i/><i/></div>
       <div className="thesis-strip">
         <span>THE STRATEGIC THESIS</span>
         <p>Communication earns attention. <b>Action creates value.</b> Operations earns trust at scale.</p>
