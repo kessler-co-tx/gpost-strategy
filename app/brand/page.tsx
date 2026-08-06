@@ -21,8 +21,8 @@ export default function BrandSystem() {
     <main className="brand-page">
       <header className="topbar brand-topbar">
         <Link className="brand brand-link" href="/">
-          <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-reference.png`} alt="GPOST — need to know" />
-          <img className="brand-icon" src={`${basePath}/brand/gpost-icon-reference.png`} alt="" />
+          <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-transparent.png`} alt="GPOST — need to know" />
+          <img className="brand-icon" src={`${basePath}/brand/gpost-icon-transparent.png`} alt="" />
           <span className="strategy-name">GPOST<br/><small>Brand System</small></span>
         </Link>
         <nav aria-label="Brand guide sections">

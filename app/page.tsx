@@ -28,8 +28,8 @@ export default function Home() {
     <main>
       <header className="topbar">
         <button className="brand" onClick={() => navigate("strategy")} aria-label="Return to top">
-          <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-reference.png`} alt="GPOST — need to know" />
-          <img className="brand-icon" src={`${basePath}/brand/gpost-icon-reference.png`} alt="" />
+          <img className="brand-wordmark" src={`${basePath}/brand/gpost-wordmark-transparent.png`} alt="GPOST — need to know" />
+          <img className="brand-icon" src={`${basePath}/brand/gpost-icon-transparent.png`} alt="" />
           <span className="strategy-name">GPOST<br/><small>Growth Strategy</small></span>
         </button>
         <nav aria-label="Strategy sections">
@@ -50,6 +50,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-map-wrap"><img className="hero-map-art" src={`${basePath}/brand/geographic-strategy-reference.png`} alt="A geographic network connecting place, communication, people, and trusted action" /></div>
+        <div className="hero-cover-frame" aria-hidden="true"><i/><i/><i/><i/></div>
         <div className="thesis-strip">
           <span>THE STRATEGIC THESIS</span>
           <p>Communication earns attention. <b>Action creates value.</b> Operations earns trust at scale.</p>

@@ -42,9 +42,18 @@ button:focus-visible, a:focus-visible { outline: 3px solid #18a9cf; outline-offs
 :root[data-theme="dark"] .brand, :root[data-theme="dark"] .topbar nav button, :root[data-theme="dark"] .topbar nav a { color: #d9e5ef; }
 :root[data-theme="dark"] .brand-guide-link, :root[data-theme="dark"] .theme-toggle { color: #9fb2c2; }
 
-.hero-map-wrap { position: absolute; width: min(42vw, 540px); height: 560px; right: 3.5vw; top: 76px; z-index: 1; overflow: hidden; border: 1px solid rgba(61, 127, 255, .38); box-shadow: 0 30px 70px rgba(0, 0, 0, .28); }
-.hero-map-art { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-:root[data-theme="light"] .hero-map-wrap { box-shadow: 0 22px 60px rgba(23, 103, 242, .16); }
+.hero-map-wrap { position: absolute; inset: 0 0 0 45%; z-index: 0; overflow: hidden; }
+.hero-map-wrap:after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #061426 0%, rgba(6,20,38,.25) 26%, rgba(6,20,38,.04) 75%); }
+.hero-map-art { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; opacity: .92; filter: saturate(.9) contrast(1.03); }
+.hero-cover-frame { position: absolute; z-index: 3; inset: 14px; pointer-events: none; border: 1px solid rgba(23,103,242,.72); background-image: repeating-linear-gradient(90deg, transparent 0, transparent 11.8%, rgba(23,103,242,.6) 11.8%, rgba(23,103,242,.6) 12%, transparent 12%, transparent 12.5%); background-size: 100% 9px; background-repeat: no-repeat; }
+.hero-cover-frame i { position: absolute; width: 18px; height: 18px; border-color: #1767f2; border-style: solid; }
+.hero-cover-frame i:nth-child(1) { left: 9px; top: 9px; border-width: 3px 0 0 3px; }.hero-cover-frame i:nth-child(2) { right: 9px; top: 9px; border-width: 3px 3px 0 0; }.hero-cover-frame i:nth-child(3) { right: 9px; bottom: 9px; border-width: 0 3px 3px 0; }.hero-cover-frame i:nth-child(4) { left: 9px; bottom: 9px; border-width: 0 0 3px 3px; }
+:root[data-theme="light"] .hero-map-wrap { inset: 0; z-index: 0; border: 0; box-shadow: none; }
+:root[data-theme="light"] .hero-map-wrap:after { display: block; background: linear-gradient(90deg, rgba(247,250,255,.99) 0%, rgba(247,250,255,.94) 39%, rgba(247,250,255,.68) 66%, rgba(247,250,255,.32) 100%); }
+:root[data-theme="light"] .hero-map-art { opacity: .22; object-position: 72% center; filter: saturate(.62) contrast(.9); }
+:root[data-theme="light"] .hero-cover-frame { display: block; opacity: .27; }
+:root[data-theme="dark"] .hero { background: #061426; }
+:root[data-theme="dark"] .hero:before { background: radial-gradient(circle at 76% 50%, rgba(23,103,242,.1), transparent 38%), linear-gradient(115deg, rgba(23,103,242,.035) 1px, transparent 1px); background-size: auto, 72px 72px; }
 
 /* Dark strategy expression */
 :root[data-theme="dark"] body { background: #071522; color: #fff; }
@@ -172,7 +181,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid #18a9cf; outline-offs
   .brand-wordmark { width: 110px; }
   .topbar { gap: 18px; }
   .brand-guide-link { display: none; }
-  .hero-map-wrap { right: -110px; opacity: .58; }
   .asset-grid { grid-template-columns: 1fr 1fr; }
   .logo-rules { grid-template-columns: 1fr 1fr; }
   .logo-rules > * { border-bottom: 1px solid var(--theme-rule); }
@@ -182,7 +190,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid #18a9cf; outline-offs
   .strategy-name { display: none; }
   .brand-wordmark { width: 116px; }
   .theme-toggle > span:last-child { display: none; }
-  .hero-map-wrap { width: 340px; height: 355px; right: -190px; top: 330px; opacity: .34; }
+  :root[data-theme="dark"] .hero-map-wrap { left: 38%; }
+  :root[data-theme="dark"] .hero-map-art { object-position: center; opacity: .72; }
+  :root[data-theme="dark"] .hero-map-wrap:after { background: linear-gradient(90deg, #061426 0%, rgba(6,20,38,.45) 35%, rgba(6,20,38,.12)); }
+  :root[data-theme="light"] .hero-map-wrap { inset: 0; opacity: 1; }
+  :root[data-theme="light"] .hero-map-art { object-position: 62% center; opacity: .16; }
+  :root[data-theme="light"] .hero-map-wrap:after { background: linear-gradient(90deg, rgba(247,250,255,.98), rgba(247,250,255,.74)); }
+  :root[data-theme="dark"] .hero-map-wrap { inset: 255px -150px 0 28%; opacity: .48; }
+  .hero-cover-frame { inset: 8px; }
   .brand-hero { grid-template-columns: 1fr; padding: 70px 22px; min-height: 720px; }
   .brand-hero h1 { font-size: 45px; }
   .brand-hero > img { max-height: 330px; }
