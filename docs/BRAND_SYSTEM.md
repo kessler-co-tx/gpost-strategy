@@ -1,8 +1,8 @@
 # GPOST Strategy Brand System
 
-Version 1.0 — August 2026
+Version 1.1 — August 2026
 
-This guide keeps additional pages consistent with the GPOST Growth Strategy site. It is a candidacy presentation system, not a replacement for GPOST's official corporate brand standards.
+This is an internal implementation guide for keeping the strategy site consistent. It is not a public section of the site and is not a replacement for GPOST's official corporate brand standards.
 
 ## Two connected expressions
 
@@ -26,7 +26,12 @@ Use dark mode for recommendations, operating-model design, payment architecture,
 - Progress and recommended paths: Progress Lime `#B8D930`
 - Geographic systems are the signature visual motif.
 
-Theme is semantic, not decorative. A single page should not mix both background systems indiscriminately. The shared toggle persists a visitor's preference across the site.
+Theme is semantic, not decorative. The public site has one presentation control: a two-state toggle between **GPOST** (light) and **Strategy** (dark). Both modes carry the same core narrative unless a deliberate, documented content variation is added later. The shared toggle persists a visitor's preference across the site.
+
+### Header lockups
+
+- **Light / GPOST:** show only the established GPOST wordmark. Do not append “GPOST Growth Strategy” or another strategy label.
+- **Dark / Strategy:** show the latest compact GPOST icon with the larger “GPOST / Growth Strategy” lockup. This is the bolder strategy expression.
 
 ## Approved palette
 
@@ -66,16 +71,21 @@ Use geographic imagery when the subject materially involves place, routing, netw
 
 Avoid generic stock skylines, globes without a functional relationship, satellite photographs, payment-card clichés, and decorative maps that compete with the content.
 
-## Identity assets
+## Identity assets and evolution record
 
 Files are under `public/brand/`:
 
-- `gpost-wordmark-reference.png`
-- `gpost-icon-reference.png`
+- `gpost-wordmark-transparent.png` — **current wordmark asset**, introduced in commit `277391b` for the latest site header treatment.
+- `gpost-icon-transparent.png` — **current compact icon**, introduced in commit `277391b` and used by the dark Strategy header.
 - `geographic-strategy-reference.png`
 - `../og.png`
 
-The two GPOST marks were supplied as reference screenshots. Use them without recoloring, stretching, rotating, retyping, or adding effects. Confirm original production-ready trademark files with GPOST before an external commercial launch.
+Earlier working resources are retained for provenance but are not the current implementation assets:
+
+- `gpost-wordmark-reference.png` — the original white-field wordmark reference used to establish proportions and identity treatment.
+- `gpost-icon-reference.png` — the original white-field compact-icon reference used before the transparent export.
+
+The evolution was from screenshot-style reference resources with fixed white fields to transparent production-friendly exports that work cleanly in the site header. Do not revert the site to the older reference PNGs. Preserve both generations without recoloring, stretching, rotating, retyping, or adding effects. Confirm original production-ready trademark files with GPOST before an external commercial launch.
 
 ## Additional-page anatomy
 

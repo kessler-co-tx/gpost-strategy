@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ThemeToggle } from "./components/ThemeToggle";
 
 const Badge = ({ type }: { type: "Verified" | "Interpretation" | "Hypothesis" }) => (
@@ -35,7 +34,6 @@ export default function Home() {
         <nav aria-label="Strategy sections">
           {nav.map(([id, label]) => <button key={id} className={active === id ? "active" : ""} onClick={() => navigate(id)}>{label}</button>)}
         </nav>
-        <Link className="brand-guide-link" href="/brand">Brand system</Link>
         <ThemeToggle />
       </header>
 
@@ -208,7 +206,7 @@ export default function Home() {
         <button onClick={() => navigate("strategy")}>Return to the thesis ↑</button>
       </section>
 
-      <footer><span>GPOST GROWTH STRATEGY · AUGUST 2026 · <Link href="/brand">BRAND SYSTEM</Link></span><span>Public sources: <a href="https://www.gpost.com/about.php" target="_blank" rel="noreferrer">Purpose</a> · <a href="https://www.gpost.com/technology.php" target="_blank" rel="noreferrer">Technology</a> · <a href="https://www.gpost.com/faqs.php" target="_blank" rel="noreferrer">Product FAQ</a>. Recruiter context and strategic hypotheses are labeled separately.</span></footer>
+      <footer><span>GPOST GROWTH STRATEGY · AUGUST 2026</span><span>Public sources: <a href="https://www.gpost.com/about.php" target="_blank" rel="noreferrer">Purpose</a> · <a href="https://www.gpost.com/technology.php" target="_blank" rel="noreferrer">Technology</a> · <a href="https://www.gpost.com/faqs.php" target="_blank" rel="noreferrer">Product FAQ</a>. Recruiter context and strategic hypotheses are labeled separately.</span></footer>
     </main>
   );
 }

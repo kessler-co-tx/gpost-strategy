@@ -10,8 +10,9 @@ export function ThemeToggle() {
   useEffect(() => {
     const saved = window.localStorage.getItem("gpost-theme") as Theme | null;
     const initial = saved === "light" || saved === "dark" ? saved : "dark";
-    setTheme(initial);
     document.documentElement.dataset.theme = initial;
+    const frame = window.requestAnimationFrame(() => setTheme(initial));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const toggle = () => {

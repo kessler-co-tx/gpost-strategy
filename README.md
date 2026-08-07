@@ -10,8 +10,9 @@ An executive strategy site prepared for Joe Kessler's GPOST General Manager cand
 - A composable AI and technology architecture with responsible-data guardrails
 - A practical 30/60/90-day and 3–12-month roadmap
 - Executive decisions leadership should resolve before committing capital
-- A persistent light/dark presentation system
-- An interactive `/brand` guide with approved assets, design tokens, and additional-page instructions
+- A persistent GPOST-light/Strategy-dark presentation system
+
+The brand system, palette, asset history, and extension guidance are internal repository documentation in `docs/BRAND_SYSTEM.md`; they are intentionally not exposed as a public site route.
 
 ## Evidence standard
 
@@ -38,9 +39,9 @@ app/
   page.tsx           Strategy narrative and interactions
 public/
   og.png             Bespoke social preview card
-  brand/             GPOST reference marks, geographic system, and downloadable guide
+  brand/             Current identity assets plus retained evolution references
 docs/
-  BRAND_SYSTEM.md    Detailed instructions for extending the site
+  BRAND_SYSTEM.md    Internal instructions, palette, and asset evolution record
 .github/workflows/
   deploy-pages.yml   Automatic public GitHub Pages publishing
 .openai/
