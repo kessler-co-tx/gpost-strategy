@@ -1,16 +1,15 @@
 # GPOST Growth Strategy
 
-An executive strategy site prepared for Joe Kessler's GPOST General Manager candidacy. It presents a clear operating thesis for evolving GPOST's location-based communication platform into an actionable service layer while protecting trust.
+An executive site prepared for Joe Kessler's GPOST General Manager candidacy. One URL contains two intentionally different editorial views: GPOST's established place-based product in the light view, and Joe's proposed General Manager operating strategy in the dark view.
 
 ## What the site covers
 
-- GPOST's verified public product and purpose
-- A clearly labeled hypothesis for platform payments
-- A detailed target operating model spanning Dev/AI, Merchant Success, Customer Engagement, payment operations, global operations, risk, finance, and people
-- A composable AI and technology architecture with responsible-data guardrails
-- A practical 30/60/90-day and 3–12-month roadmap
-- Executive decisions leadership should resolve before committing capital
-- A persistent GPOST-light/Strategy-dark presentation system
+- **GPOST / light:** Mission, Product, and Payments
+- **Strategy / dark:** Office & People, Technology & AI, Global Operations, and Executive Scorecard
+- Evidence labels separating public facts, interpretation, interview-informed context, and proposals to validate
+- A third-party payments integration hypothesis, including an emerging-market and mobile-money branch
+- A chronological General Manager operating sequence with management cadence and KPIs
+- Direct-linkable views through `?view=gpost` and `?view=strategy`
 
 The brand system, palette, asset history, and extension guidance are internal repository documentation in `docs/BRAND_SYSTEM.md`; they are intentionally not exposed as a public site route.
 
@@ -18,9 +17,10 @@ The brand system, palette, asset history, and extension guidance are internal re
 
 The site separates:
 
-- **Verified:** statements supported by GPOST public materials or recruiter-provided role context
-- **Interpretation:** strategic conclusions drawn from supported facts
-- **Hypothesis:** recommended future-state designs that GPOST has not publicly confirmed
+- **Publicly documented:** supported by GPOST's public materials
+- **My interpretation:** a conclusion drawn from supported facts
+- **Interview-informed:** context supplied in private leadership conversations without presenting it as a public company statement
+- **Proposal to validate:** a candidate recommendation or planning assumption requiring leadership confirmation
 
 Primary public sources:
 
@@ -44,8 +44,6 @@ docs/
   BRAND_SYSTEM.md    Internal instructions, palette, and asset evolution record
 .github/workflows/
   deploy-pages.yml   Automatic public GitHub Pages publishing
-.openai/
-  hosting.json       Sites deployment configuration
 ```
 
 ## Local development
@@ -73,6 +71,6 @@ pnpm run build:pages
 
 The repository deploys automatically to GitHub Pages whenever `main` changes. The workflow creates a static export and publishes it at `https://kessler-co-tx.github.io/gpost-strategy/`.
 
-The existing Sites deployment remains available independently. GitHub is now the source of truth for public version history and GitHub Pages publishing.
+GitHub Pages is the sole maintained deployment and the source of truth for public version history. The former Sites configuration has been removed from this repository.
 
 Before sharing externally, confirm that every recruiter-derived fact is appropriate to publish and decide whether the URL should be public or restricted.

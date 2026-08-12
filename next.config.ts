@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const githubPages = process.env.GITHUB_ACTIONS === "true";
+const githubPages =
+  process.env.GITHUB_ACTIONS === "true" && process.env.NODE_ENV === "production";
 const repositoryPath = "/gpost-strategy";
 
 const nextConfig: NextConfig = {
