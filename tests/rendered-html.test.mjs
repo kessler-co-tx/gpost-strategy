@@ -13,9 +13,12 @@ test("ships the two-view GPOST narrative", async () => {
 
   assert.match(page, /type View = "gpost" \| "strategy"/);
   assert.match(page, /A Digital Address for the/);
-  assert.match(page, /Build the Center/);
+  assert.match(page, /Build the Team/);
   assert.match(page, /From Trusted Information/);
-  assert.match(page, /Executive scorecard/i);
+  assert.match(page, /Make Performance/);
+  assert.match(page, /SOPs & Ownership/);
+  assert.match(page, /SLAs & Escalation/);
+  assert.match(page, /Build a Technology/);
   assert.match(page, /URLSearchParams/);
   assert.match(layout, /GPOST \| Product & Operating Strategy/);
   assert.match(css, /data-view="strategy"/);
@@ -24,10 +27,15 @@ test("ships the two-view GPOST narrative", async () => {
 
 test("keeps internal evidence labels off the presentation surface", async () => {
   const page = await readFile(new URL("app/page.tsx", root), "utf8");
+  const strategy = page.slice(page.indexOf("function StrategyView"), page.indexOf("function SectionIntro"));
   assert.doesNotMatch(page, /Publicly documented/);
   assert.doesNotMatch(page, /My interpretation/);
   assert.doesNotMatch(page, /Interview-informed/);
   assert.doesNotMatch(page, /Proposal to validate/);
+  assert.doesNotMatch(strategy, /General Manager|\bGM\b|Joe|recruiter|role emphasis|Operating proposal|Planning scenario|Candidate-verified/i);
+  assert.doesNotMatch(strategy, /Office & People|Technology & Artificial Intelligence/);
+  assert.doesNotMatch(strategy, /Executive Readout|scorecard-principle/);
+  assert.doesNotMatch(strategy, /—/);
 });
 
 test("ships the requested light-side refinement", async () => {

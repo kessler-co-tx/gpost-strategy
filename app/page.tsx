@@ -6,7 +6,9 @@ import {
   Bank,
   Buildings,
   ChatCircleText,
+  ChartLineUp,
   Crosshair,
+  Database,
   DeviceMobile,
   FileText,
   LockKey,
@@ -27,7 +29,7 @@ function Arrow() {
 }
 
 const gpostNav = [["mission", "Mission"], ["product", "Product"], ["payments", "Payments"]];
-const strategyNav = [["office", "Office & People"], ["technology", "Technology & AI"], ["operations", "Global Operations"], ["scorecard", "Executive Scorecard"]];
+const strategyNav = [["office", "Team"], ["technology", "Technology"], ["operations", "Operations"], ["scorecard", "Reporting"]];
 
 const gpostTimeline = [
   { Icon: MapPin, title: "Physical Place", body: "A real-world place with an address, area, or current location." },
@@ -122,8 +124,8 @@ export default function Home() {
         <GpostFooter basePath={basePath} navigate={navigate} switchView={switchView} />
       ) : (
         <footer className="strategy-footer">
-          <span>GPOST · Product & Operating Strategy</span>
-          <span>Leadership Discussion · August 2026</span>
+          <span>GPOST · Operating Strategy</span>
+          <span>Team · Technology · Operations · Reporting</span>
         </footer>
       )}
     </main>
@@ -254,73 +256,92 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
       <div className="strategy-map"><img src={`${basePath}/brand/geographic-strategy-reference.png`} alt="Abstract global network connecting operating regions" /></div>
       <div className="hero-grid">
         <div className="hero-copy">
-          <p className="kicker">A General Manager’s Operating Sequence</p>
-          <h1>Build the Center.<br />Connect the Company.<br /><em>Run the System.</em></h1>
-          <p className="lede">Start with the Austin office and its people system. Turn strategy into dependable technology delivery. Then run one company across markets, teams, and time zones—with financial health visible to leadership.</p>
-          <div className="hero-actions"><button className="primary" onClick={() => navigate("office-plan")}>Start With the Office <span>↓</span></button></div>
-        </div>
-        <div className="sequence-card">
-          {["Office & People", "Technology & AI", "Global Operations", "Executive Scorecard"].map((item, index) => <div key={item}><span>0{index + 1}</span><b>{item}</b><i>{index < 3 ? "↓" : "✓"}</i></div>)}
+          <p className="kicker">GPOST Operating Strategy</p>
+          <h1>Build the Team.<br />Connect the Company.<br /><em>Run the System.</em></h1>
+          <p className="lede">Establish a strong operating center in Austin. Turn priorities into dependable technology and services. Connect markets, teams, and time zones through clear ownership, visible performance, and disciplined execution.</p>
+          <div className="hero-actions"><button className="primary" onClick={() => navigate("office-plan")}>Start With the Team <span>↓</span></button></div>
         </div>
       </div>
-      <div className="strategy-strip"><span>THE GM MANDATE</span><p>Create clarity at the center. Build leverage through systems. Make performance observable.</p></div>
+      <div className="strategy-strip operating-thesis">
+        <span>OPERATING THESIS</span>
+        <div className="thesis-principles">
+          <div><b>Clear ownership</b><small>Every priority has an accountable owner and decision path.</small></div>
+          <div><b>Repeatable systems</b><small>Critical work is documented, measured, and improved.</small></div>
+          <div><b>Visible performance</b><small>Leadership sees drivers, risks, decisions, and next actions.</small></div>
+        </div>
+      </div>
     </section>
 
     <section id="office-plan" className="section office-section">
-      <SectionIntro number="01" label="Office & People" title={<>Build the Austin<br />Operating Center.</>} body="The first operating product is the company itself: clear decision rights, a secure employee experience, and a working rhythm that connects the new office to teams around the world." dark />
-      <div className="horizon-grid">
+      <SectionIntro number="01" label="Team" title={<>Build the Austin<br />Operating Center.</>} body="The first operating product is the company itself: clear decision rights, a secure employee experience, and a working rhythm that connects Austin to teams around the world." dark />
+      <div className="horizon-grid team-foundations">
         {[
           ["01", "Establish", "Create the Foundation", "Clarify the office mandate, organization map, decision rights, employment setup, core vendors, role scorecards, equipment, access, and onboarding."],
           ["02", "Connect", "Make Distance Workable", "Set overlap windows, written handoffs, escalation paths, cultural orientation, documentation standards, and a visible ‘who owns what’ map."],
-          ["03", "Scale", "Build the Talent System", "Create the hiring plan, manager expectations, performance rhythm, workforce reviews, succession coverage, and retention signals."],
         ].map(([num, label, title, body]) => <article key={num}><span>{num}</span><small>{label}</small><h3>{title}</h3><p>{body}</p><div className="horizon-line" /></article>)}
       </div>
-      <div className="first-90">
-        <div><p className="mini-label">First 90 Days · People System</p><h3>Hire Deliberately. Onboard Securely. Integrate Globally.</h3></div>
-        <div className="check-grid">{["Office charter & decision map", "Austin role scorecards", "Employment and vendor setup", "Secure equipment & access", "Cross-region working agreements", "Manager and performance cadence", "Workforce risk review", "Time-to-productivity baseline"].map(item => <span key={item}>✓ {item}</span>)}</div>
+      <div className="first-90 scale-plan">
+        <div className="scale-plan-intro"><p className="mini-label">First 90 Days · Scale System</p><h3>Make the operating model repeatable from the start.</h3><p>Build the standards, service expectations, and management routines that let the team grow without losing clarity or control.</p></div>
+        <div className="scale-grid">
+          {[
+            ["01", "SOPs & Ownership", "Document critical workflows, approvals, owners, version control, and evidence requirements."],
+            ["02", "SLAs & Escalation", "Define service levels, severity rules, response targets, resolution targets, and breach reviews."],
+            ["03", "Onboarding & Performance", "Use role scorecards, 30/60/90 plans, quality checks, coaching, and time-to-productivity measures."],
+            ["04", "Capacity & Continuity", "Plan coverage, workload, succession, vendor continuity, and critical-role backup before demand grows."],
+          ].map(([num, title, body]) => <article key={num}><span>{num}</span><h4>{title}</h4><p>{body}</p></article>)}
+        </div>
       </div>
     </section>
 
     <section id="technology" className="section technology-section">
-      <SectionIntro number="02" label="Technology & Artificial Intelligence" title={<>Turn Strategy Into a<br /><em>Dependable Delivery System.</em></>} body="The General Manager should be the business and operating partner to technology leadership: translate priorities into roadmaps, make tradeoffs explicit, and ensure releases become reliable services." dark />
-      <div className="delivery-loop">
+      <SectionIntro number="02" label="Technology" title={<>Build a Technology<br /><em>Operating System.</em></>} body="Manage priorities, architecture, delivery, reliability, security, data, and cost as one connected system. The goal is not more activity. The goal is dependable technology that produces measurable business outcomes." dark />
+      <div className="technology-foundations">
         {[
-          ["01", "Business outcome", "Customer, market, revenue, or risk result"],
-          ["02", "Requirements", "Owner, acceptance criteria, constraints, dependencies"],
-          ["03", "Build & integrate", "Product, engineering, vendors, data, payments"],
-          ["04", "Release readiness", "Quality, security, support, rollback, communications"],
-          ["05", "Observe & learn", "Adoption, reliability, incidents, cost, feedback"],
-        ].map(([num, title, body], index) => <article key={num}><span>{num}</span><h3>{title}</h3><p>{body}</p><i>{index < 4 ? "→" : "↺"}</i></article>)}
+          [FileText, "01", "Strategy & Portfolio", "Convert business priorities into an outcome-based roadmap with owners, dependencies, architecture decisions, funding, and measurable success criteria."],
+          [Network, "02", "Architecture & Integration", "Define service boundaries, API and event contracts, data ownership, idempotency, integration standards, and provider abstraction."],
+          [RocketLaunch, "03", "Delivery & Release", "Use small changes, automated tests, continuous delivery, feature controls, release gates, rollback plans, and support readiness."],
+          [ShieldCheck, "04", "Reliability & Security", "Set service objectives, monitor error budgets, instrument critical journeys, manage incidents, and embed secure development practices."],
+          [Database, "05", "Data & Intelligence", "Control lineage, access, retention, approved sources, model evaluation, human review, and cost for localized intelligence."],
+        ].map(([Icon, num, title, body]) => {
+          const TechIcon = Icon as typeof FileText;
+          return <article key={num as string}><div className="technology-card-head"><span>{num as string}</span><TechIcon size={30} weight="duotone" /></div><h3>{title as string}</h3><p>{body as string}</p></article>;
+        })}
       </div>
-      <div className="tech-columns">
-        <div className="decision-criteria">
-          <p className="mini-label">Technology Decision Filter</p>
-          {[["Reliability", "Will it fail visibly and recover cleanly?"], ["Security", "Does access and data use match the risk?"], ["Scale", "Can the design travel across markets and volume?"], ["Integration", "How much complexity does it add at the seams?"], ["Economics", "What is the full cost to build, operate, and change?"], ["Regulatory fit", "Can it meet the obligations of the target market?"]].map(([title, body]) => <div key={title}><b>{title}</b><span>{body}</span></div>)}
+
+      <div className="technology-reporting">
+        <div className="technology-reporting-intro"><ChartLineUp size={34} weight="duotone" /><p className="mini-label">Technology Performance</p><h3>Report technology as business performance.</h3><p>Baseline each service first. Then set targets that balance delivery speed, stability, security, economics, and customer impact.</p></div>
+        <div className="technology-measures">
+          {[
+            ["Delivery Flow", ["Change lead time", "Deployment frequency", "Failed deployment recovery time", "Change fail rate", "Deployment rework rate"]],
+            ["Reliability", ["SLO attainment", "Availability", "Critical incidents", "Detection and recovery time", "Customer-impact minutes"]],
+            ["Security & Risk", ["Critical findings", "Remediation age", "Access reviews", "Third-party risk", "Control exceptions"]],
+            ["Economics & Adoption", ["Cloud cost per transaction", "Vendor spend", "Feature adoption", "Automation time saved", "Intelligence cost per task"]],
+          ].map(([title, metrics]) => <article key={title as string}><h4>{title as string}</h4>{(metrics as string[]).map(metric => <span key={metric}>{metric}</span>)}</article>)}
         </div>
-        <div className="language-model-card">
-          <p className="mini-label">Localized Language Intelligence</p>
-          <h3>Model the Culture and Subgroup—Not an Imagined Universal User.</h3>
-          <p>The direction described by leadership is a smaller, focused language-learning model designed around the language, culture, and context of a community or subgroup—rather than assuming one universal large model can serve every place equally.</p>
-          <ul><li>Ground responses in approved local sources</li><li>Evaluate by language, culture, task, and market</li><li>Use human review for sensitive communication</li><li>Measure usefulness, errors, bias, cost, and escalation</li></ul>
+      </div>
+
+      <div className="technology-governance">
+        <p className="mini-label">Decision and Control Rhythm</p>
+        <div>
+          {[
+            ["Weekly", "Portfolio & Dependency Review", "Resolve priority conflicts, ownership gaps, dependencies, capacity constraints, and vendor decisions."],
+            ["Per Release", "Release Readiness Review", "Confirm acceptance criteria, security evidence, observability, support coverage, communications, and rollback."],
+            ["After Incidents", "Learning & Reliability Review", "Establish customer impact, root causes, corrective actions, owners, due dates, and prevention measures."],
+          ].map(([frequency, title, body]) => <article key={frequency}><span>{frequency}</span><h4>{title}</h4><p>{body}</p></article>)}
         </div>
       </div>
-      <div className="ai-operating-row">
-        <div><small>Assist</small><b>Research · Summaries · Support · Quality Review</b></div>
-        <div><small>Govern</small><b>Purpose · Access · Provenance · Evaluation · Retention</b></div>
-        <div><small>Measure</small><b>Time Saved · Cost Avoided · Accuracy · Adoption · Risk</b></div>
-        <div><small>Escalate</small><b>Human Judgment for Exceptions and Consequential Decisions</b></div>
-      </div>
+      <p className="strategy-source-line">Operating references: <a href="https://dora.dev/guides/dora-metrics/" target="_blank" rel="noreferrer">DORA delivery metrics <Arrow /></a><a href="https://sre.google/workbook/implementing-slos/" target="_blank" rel="noreferrer">Google SRE service objectives <Arrow /></a><a href="https://csrc.nist.gov/pubs/sp/800/218/final" target="_blank" rel="noreferrer">NIST secure development <Arrow /></a><a href="https://opentelemetry.io/docs/what-is-opentelemetry/" target="_blank" rel="noreferrer">OpenTelemetry observability <Arrow /></a></p>
     </section>
 
     <section id="operations" className="section operations-section">
-      <SectionIntro number="03" label="Global Operations" title={<>Run One Company Across<br />Markets, Teams, and Time Zones.</>} body="The operating model should make ownership, handoffs, risks, and results visible—so work continues across regions without creating four versions of the company." dark />
-      <div className="scenario-banner"><p>The footprint below uses Austin, Kenya, Vietnam, and Australia as a planning scenario. Exact team responsibilities and future market assignments require leadership confirmation.</p></div>
+      <SectionIntro number="03" label="Operations" title={<>Run One Company Across<br />Markets, Teams, and Time Zones.</>} body="Make ownership, handoffs, service standards, risks, and results visible so work continues across regions without creating separate versions of the company." dark />
+      <div className="region-premise"><b>Design every location as a node in one operating system.</b><p>Each node has a clear purpose, named ownership, defined service expectations, and written handoffs to the next team.</p></div>
       <div className="region-model">
         {[
-          ["Austin", "Operating Center", "General Manager leadership · Coordination · Business operations · Artificial-intelligence enablement"],
-          ["Kenya", "Delivery Node", "Planning assumption for development and payments-engineering collaboration"],
-          ["Vietnam", "Service Node", "Planning assumption for customer and operational support coverage"],
-          ["Australia", "Leadership Node", "Executive and board alignment · Established company context"],
+          ["Austin", "Operating Center", "Company coordination · Business operations · Shared standards · Executive reporting"],
+          ["Kenya", "Product & Payments Node", "Engineering collaboration · Payment integration · Testing · Release support"],
+          ["Vietnam", "Service & Quality Node", "Customer operations · Quality assurance · Monitoring · Issue triage"],
+          ["Australia", "Leadership & Market Node", "Executive alignment · Governance · Market context · Strategic decisions"],
         ].map(([region, role, body], index) => <article key={region}><span>0{index + 1}</span><small>{region}</small><h3>{role}</h3><p>{body}</p></article>)}
       </div>
 
@@ -329,19 +350,19 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
         <div>{[
           ["Decision Rights", "Who decides, who recommends, who executes, and when a decision escalates."],
           ["Follow-the-Sun Handoffs", "Written status, next action, owner, deadline, risk, and context before a region signs off."],
+          ["SOPs & Service Levels", "Documented workflows, measurable SLAs, escalation thresholds, quality checks, and breach reviews."],
           ["Market-Entry Gates", "Demand, partner, product, payments, legal, service, economics, and launch-readiness evidence."],
-          ["Service Ownership", "Named owners for releases, incidents, payment exceptions, vendors, support, and recovery."],
           ["Risk & Controls", "A live register connecting business risks to controls, evidence, owners, incidents, and remediation."],
           ["Executive Narrative", "One version of performance: actuals, forecast, drivers, decisions, risks, and next commitments."],
         ].map(([title, body], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
       </div>
 
       <div className="cadence-table">
-        <div className="cadence-intro"><p className="mini-label">The Operating Rhythm</p><h3>Make the System Observable.</h3><p>Meetings exist to make decisions, remove constraints, and assign accountable next actions—not to repeat status.</p></div>
+        <div className="cadence-intro"><p className="mini-label">Operations & Reporting Rhythm</p><h3>Make the System Observable.</h3><p>Meetings exist to make decisions, remove constraints, and assign accountable next actions. Written reporting carries status.</p></div>
         <div className="cadence-rows">
           {[
-            ["Daily", "Service Pulse & Handoff", "Critical incidents · Payment exceptions · Service health · Next-region handoff", "15–20 min + written handoff"],
-            ["Weekly", "Executive Operating Review", "Outcomes · Delivery · Customers · Cash · Vendors · People · Risk decisions", "60–90 min"],
+            ["Daily", "Service Pulse & Handoff", "Critical incidents · Payment exceptions · Service health · Next-region handoff", "15 to 20 min + written handoff"],
+            ["Weekly", "Executive Operating Review", "Outcomes · Delivery · Customers · Cash · Vendors · People · Risk decisions", "60 to 90 min"],
             ["Monthly", "Business Performance Review", "Profit and loss · Forecast · Market scorecards · Workforce · Controls · Priorities", "2 hours"],
             ["Quarterly", "Strategy & Resource Reset", "Objectives · Capital allocation · Market gates · Portfolio · Talent · Scenarios", "Half day"],
           ].map(([frequency, meeting, agenda, format]) => <div key={frequency}><span>{frequency}</span><b>{meeting}</b><p>{agenda}</p><small>{format}</small></div>)}
@@ -350,8 +371,7 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
     </section>
 
     <section id="scorecard" className="section scorecard-section">
-      <SectionIntro number="04" label="Executive Scorecard" title={<>Financial Health Is the<br /><em>Result of the Operating System.</em></>} body="Leadership needs one concise view of growth, trust, delivery, customers, people, and cash—with drill-down measures that identify the driver and the owner." dark />
-      <div className="scorecard-principle"><span>Executive Readout</span><b>Actual</b><i>vs</i><b>Plan</b><i>vs</i><b>Prior Period</b><i>→</i><b>Driver</b><i>→</i><b>Decision / Owner / Date</b></div>
+      <SectionIntro number="04" label="Reporting" title={<>Make Performance<br /><em>Visible and Actionable.</em></>} body="Leadership needs one concise view of growth, trust, technology, customers, people, and cash, with drill-down measures that identify the driver and the owner." dark />
       <div className="kpi-grid">
         <article className="finance-kpis">
           <div className="kpi-head"><span>01</span><p>Financial Health</p></div>
@@ -370,11 +390,11 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
           ["07", "People", "Do We Have the Capability and Coverage to Execute?", ["Time to Hire", "Time to Productivity", "Regrettable Attrition", "Critical-Role Coverage", "Manager Effectiveness"]],
         ].map(([num, label, question, metrics]) => <article className="kpi-card" key={num as string}><div className="kpi-head"><span>{num as string}</span><p>{label as string}</p></div><h3>{question as string}</h3><div className="metric-list">{(metrics as string[]).map(metric => <span key={metric}>{metric}</span>)}</div></article>)}
       </div>
-      <div className="readiness-note"><p className="kicker">Capital-Market Readiness</p><h3>Build the Discipline Before the Event.</h3><p>Clean reporting, controlled processes, reliable forecasts, documented decisions, and visible risks prepare the company for major financing or public-market scrutiny—without assuming a specific venue, deadline, or reason for the Austin office.</p></div>
+      <div className="readiness-note"><p className="kicker">Financing Readiness</p><h3>Build the Discipline Before the Event.</h3><p>Clean reporting, controlled processes, reliable forecasts, documented decisions, and visible risks give leadership confidence during financing, partnership, and expansion decisions.</p></div>
     </section>
 
     <section className="closing strategy-closing">
-      <p className="kicker">The General Manager Mandate</p>
+      <p className="kicker">Operating Principle</p>
       <h2>Clarity at the Center.<br /><em>Confidence at Scale.</em></h2>
       <p>Build the office. Connect the teams. Instrument the business. Let disciplined execution compound trust.</p>
       <button onClick={() => navigate("office")}>Return to the beginning ↑</button>
