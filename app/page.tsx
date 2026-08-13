@@ -10,13 +10,13 @@ import {
   ChartLineUp,
   ClipboardText,
   ClockCountdown,
-  Code,
   Crosshair,
   Database,
   DeviceMobile,
   FileText,
-  GlobeHemisphereWest,
-  Headset,
+  FlowerLotus,
+  Gavel,
+  GlobeHemisphereEast,
   LockKey,
   MapPin,
   Network,
@@ -24,6 +24,7 @@ import {
   RocketLaunch,
   ShareNetwork,
   ShieldCheck,
+  Star,
   Storefront,
   SunHorizon,
   Target,
@@ -323,10 +324,10 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
         <div className="technology-reporting-intro"><ChartLineUp size={34} weight="duotone" /><p className="mini-label">Technology Performance</p><h3>Report technology as business performance.</h3><p>Baseline each service first. Then set targets that balance delivery speed, stability, security, economics, and customer impact.</p></div>
         <div className="technology-measures">
           {[
-            ["Delivery Flow", ["Change Lead Time", "Deployment Frequency", "Failed Deployment Recovery Time", "Change Fail Rate", "Deployment Rework Rate"]],
+            ["Delivery", ["Change Lead Time", "Deployment Frequency", "Failed Deployment Recovery Time", "Change Fail Rate", "Deployment Rework Rate"]],
             ["Reliability", ["Service Level Objective Attainment", "Availability", "Critical Incidents", "Detection And Recovery Time", "Customer-Impact Minutes"]],
-            ["Security & Risk", ["Critical Findings", "Remediation Age", "Access Reviews", "Third-Party Risk", "Control Exceptions"]],
-            ["Economics & Adoption", ["Cloud Cost Per Transaction", "Vendor Spend", "Feature Adoption", "Automation Time Saved", "Intelligence Cost Per Task"]],
+            ["Security", ["Critical Findings", "Remediation Age", "Access Reviews", "Third-Party Risk", "Control Exceptions"]],
+            ["Adoption", ["Feature Adoption", "Automation Time Saved", "Intelligence Cost Per Task", "Cloud Cost Per Transaction", "Vendor Spend"]],
           ].map(([title, metrics]) => <article key={title as string}><h4>{title as string}</h4>{(metrics as string[]).map(metric => <span key={metric}>{metric}</span>)}</article>)}
         </div>
       </div>
@@ -342,53 +343,36 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
         </div>
       </div>
 
-      <div className="follow-sun-system">
-        <div className="follow-sun-intro">
-          <div><SunHorizon size={38} weight="duotone" /><p className="mini-label">Follow-the-Sun Support Model</p></div>
-          <h3>Keep service moving while the company sleeps.</h3>
-          <p>Australia, Vietnam, and Austin form the continuous support spine. Each region closes its day with a written handoff containing current status, customer impact, next action, owner, deadline, risk, and escalation context.</p>
-        </div>
-        <div className="follow-sun-map" aria-label="Global follow-the-sun operating model">
-          <img src={`${basePath}/brand/geographic-strategy-reference.png`} alt="World map showing GPOST operating and target-market locations" />
-          <article className="follow-sun-node austin"><Headset size={24} weight="duotone" /><b>Austin</b><span>Operations & Support</span></article>
-          <article className="follow-sun-node vietnam"><Code size={24} weight="duotone" /><b>Vietnam</b><span>Development & Support</span></article>
-          <article className="follow-sun-node australia"><GlobeHemisphereWest size={24} weight="duotone" /><b>Australia</b><span>Executive Leadership & Existing Market</span></article>
-          <article className="follow-sun-node kenya"><Target size={23} weight="duotone" /><b>Kenya</b><span>First New Target Market</span></article>
-          <article className="follow-sun-node latin-america"><Target size={23} weight="duotone" /><b>Latin America</b><span>First New Target Market</span></article>
-        </div>
-        <div className="follow-sun-handoffs">
-          <article><span>01</span><b>Australia → Vietnam</b><p>Australia hands leadership decisions and existing-market context to Vietnam for the development and support day.</p></article>
-          <article><span>02</span><b>Vietnam → Austin</b><p>Vietnam hands releases, defects, monitoring, and open support issues to Austin as the U.S. operating day begins.</p></article>
-          <article><span>03</span><b>Austin → Australia</b><p>Austin hands operating status, escalations, and customer impact to Australia for executive action and the next support cycle.</p></article>
-        </div>
-        <div className="follow-sun-anchor"><ClockCountdown size={28} weight="duotone" /><div><span>Three-Team Anchor Window</span><b>Austin 6:00–7:00 PM · Vietnam 6:00–7:00 AM next day · Australia East 9:00–10:00 AM next day</b><small>Use for high-priority decisions and cross-team coordination. Shift seasonally for daylight saving.</small></div></div>
-      </div>
       <p className="strategy-source-line">Operating references: <a href="https://dora.dev/guides/dora-metrics/" target="_blank" rel="noreferrer">DORA delivery metrics <Arrow /></a><a href="https://sre.google/workbook/implementing-slos/" target="_blank" rel="noreferrer">Google SRE service objectives <Arrow /></a><a href="https://csrc.nist.gov/pubs/sp/800/218/final" target="_blank" rel="noreferrer">NIST secure development <Arrow /></a><a href="https://opentelemetry.io/docs/what-is-opentelemetry/" target="_blank" rel="noreferrer">OpenTelemetry observability <Arrow /></a></p>
     </section>
 
     <section id="operations" className="section operations-section">
-      <SectionIntro number="03" label="Operations" title={<>Run One Company Across<br />Markets, Teams, and Time Zones.</>} body="Make ownership, handoffs, service standards, risks, and results visible so work continues across regions without creating separate versions of the company." dark />
+      <SectionIntro number="03" label="Operations" title={<>One Company Across<br />Markets, Teams, and<br />Time Zones</>} body="Make ownership, handoffs, service standards, risks, and results visible so work continues across regions without creating separate versions of the company." dark />
       <div className="region-premise"><b>Design every location as a node in one operating system.</b><p>Each node has a clear purpose, named ownership, defined service expectations, and written handoffs to the next team.</p></div>
       <div className="region-model">
         {[
-          ["Austin", "Operations & Support", "Company coordination · Business operations · Shared standards · Customer and service support"],
-          ["Vietnam", "Development & Support", "Product development · Engineering delivery · Release support · Monitoring and issue triage"],
-          ["Australia", "Leadership & Existing Market", "Executive alignment · Governance · Existing-market context · Strategic decisions"],
-          ["Kenya", "First New Target Market", "Market validation · Local partnerships · Payments readiness · Launch learning"],
-          ["Latin America", "First New Target Market", "Market validation · Local partnerships · Service readiness · Launch learning"],
-        ].map(([region, role, body], index) => <article key={region}><span>0{index + 1}</span><small>{region}</small><h3>{role}</h3><p>{body}</p></article>)}
+          [Star, "Texas", "Austin", "Operations & Support", "Company coordination · Business operations · Shared standards · Customer and service support"],
+          [FlowerLotus, "Vietnam", "Vietnam", "Development & Support", "Product development · Engineering delivery · Release support · Monitoring and issue triage"],
+          [GlobeHemisphereEast, "Australia", "Australia", "Leadership & Existing Market", "Executive alignment · Governance · Existing-market context · Strategic decisions"],
+        ].map(([Icon, iconLabel, region, role, body]) => {
+          const RegionIcon = Icon as typeof Star;
+          return <article key={region as string}><div className="region-card-head"><small>{region as string}</small><div className="region-icon" aria-label={`${iconLabel as string} icon`}><RegionIcon size={30} weight="duotone" /></div></div><h3>{role as string}</h3><p>{body as string}</p></article>;
+        })}
       </div>
 
       <div className="operating-system">
         <p className="mini-label">One Global Operating System</p>
         <div>{[
-          ["Decision Rights", "Who decides, who recommends, who executes, and when a decision escalates."],
-          ["Follow-the-Sun Handoffs", "Written status, next action, owner, deadline, risk, and context before a region signs off."],
-          ["SOPs & Service Levels", "Documented workflows, measurable SLAs, escalation thresholds, quality checks, and breach reviews."],
-          ["Market-Entry Gates", "Demand, partner, product, payments, legal, service, economics, and launch-readiness evidence."],
-          ["Risk & Controls", "A live register connecting business risks to controls, evidence, owners, incidents, and remediation."],
-          ["Executive Narrative", "One version of performance: actuals, forecast, drivers, decisions, risks, and next commitments."],
-        ].map(([title, body], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+          [Gavel, "Decision Rights", "Who decides, who recommends, who executes, and when a decision escalates."],
+          [SunHorizon, "Follow-the-Sun Handoffs", "Written status, next action, owner, deadline, risk, and context before a region signs off."],
+          [ClipboardText, "SOPs & Service Levels", "Documented workflows, measurable SLAs, escalation thresholds, quality checks, and breach reviews."],
+          [Target, "Market-Entry Gates", "Demand, partner, product, payments, legal, service, economics, and launch-readiness evidence."],
+          [ShieldCheck, "Risk & Controls", "A live register connecting business risks to controls, evidence, owners, incidents, and remediation."],
+          [ChartLineUp, "Executive Narrative", "One version of performance: actuals, forecast, drivers, decisions, risks, and next commitments."],
+        ].map(([Icon, title, body]) => {
+          const OperatingIcon = Icon as typeof Gavel;
+          return <article key={title as string}><div className="operating-icon"><OperatingIcon size={31} weight="duotone" /></div><h3>{title as string}</h3><p>{body as string}</p></article>;
+        })}</div>
       </div>
 
       <div className="cadence-table">
