@@ -2,15 +2,21 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  ArrowsClockwise,
   ArrowRight,
   Bank,
   Buildings,
   ChatCircleText,
   ChartLineUp,
+  ClipboardText,
+  ClockCountdown,
+  Code,
   Crosshair,
   Database,
   DeviceMobile,
   FileText,
+  GlobeHemisphereWest,
+  Headset,
   LockKey,
   MapPin,
   Network,
@@ -19,7 +25,10 @@ import {
   ShareNetwork,
   ShieldCheck,
   Storefront,
+  SunHorizon,
+  Target,
   UserCircle,
+  UsersThree,
 } from "@phosphor-icons/react";
 
 type View = "gpost" | "strategy";
@@ -99,7 +108,7 @@ export default function Home() {
       <header className="topbar">
         <button className="brand" onClick={() => navigate(view === "gpost" ? "mission" : "office")} aria-label="Return to the beginning">
           <img src={`${basePath}/brand/gpost-wordmark-transparent.png`} alt="GPOST" />
-          <span className="strategy-brand"><img src={`${basePath}/brand/gpost-icon-transparent.png`} alt="" /><b>GPOST</b></span>
+          <span className="strategy-brand"><img src={`${basePath}/brand/gpost-strategy-logo-signal.png`} alt="GPOST" /></span>
         </button>
 
         <nav className={menuOpen ? "open" : ""} aria-label={`${view === "gpost" ? "GPOST" : "Strategy"} sections`}>
@@ -256,7 +265,6 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
       <div className="strategy-map"><img src={`${basePath}/brand/geographic-strategy-reference.png`} alt="Abstract global network connecting operating regions" /></div>
       <div className="hero-grid">
         <div className="hero-copy">
-          <p className="kicker">GPOST Operating Strategy</p>
           <h1>Build the Team.<br />Connect the Company.<br /><em>Run the System.</em></h1>
           <p className="lede">Establish a strong operating center in Austin. Turn priorities into dependable technology and services. Connect markets, teams, and time zones through clear ownership, visible performance, and disciplined execution.</p>
           <div className="hero-actions"><button className="primary" onClick={() => navigate("office-plan")}>Start With the Team <span>↓</span></button></div>
@@ -281,14 +289,17 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
         ].map(([num, label, title, body]) => <article key={num}><span>{num}</span><small>{label}</small><h3>{title}</h3><p>{body}</p><div className="horizon-line" /></article>)}
       </div>
       <div className="first-90 scale-plan">
-        <div className="scale-plan-intro"><p className="mini-label">First 90 Days · Scale System</p><h3>Make the operating model repeatable from the start.</h3><p>Build the standards, service expectations, and management routines that let the team grow without losing clarity or control.</p></div>
+        <div className="scale-plan-intro"><p className="mini-label">03 · Scale System</p><h3>Make the operating model repeatable from the start.</h3><p>Build the standards, service expectations, and management routines that let the team grow without losing clarity or control.</p></div>
         <div className="scale-grid">
           {[
-            ["01", "SOPs & Ownership", "Document critical workflows, approvals, owners, version control, and evidence requirements."],
-            ["02", "SLAs & Escalation", "Define service levels, severity rules, response targets, resolution targets, and breach reviews."],
-            ["03", "Onboarding & Performance", "Use role scorecards, 30/60/90 plans, quality checks, coaching, and time-to-productivity measures."],
-            ["04", "Capacity & Continuity", "Plan coverage, workload, succession, vendor continuity, and critical-role backup before demand grows."],
-          ].map(([num, title, body]) => <article key={num}><span>{num}</span><h4>{title}</h4><p>{body}</p></article>)}
+            [ClipboardText, "SOPs & Ownership", "Document critical workflows, approvals, owners, version control, and evidence requirements."],
+            [ClockCountdown, "SLAs & Escalation", "Define service levels, severity rules, response targets, resolution targets, and breach reviews."],
+            [UsersThree, "Onboarding & Performance", "Use role scorecards, 30/60/90 plans, quality checks, coaching, and time-to-productivity measures."],
+            [ArrowsClockwise, "Capacity & Continuity", "Plan coverage, workload, succession, vendor continuity, and critical-role backup before demand grows."],
+          ].map(([Icon, title, body]) => {
+            const ScaleIcon = Icon as typeof ClipboardText;
+            return <article key={title as string}><div className="scale-icon"><ScaleIcon size={30} weight="duotone" /></div><h4>{title as string}</h4><p>{body as string}</p></article>;
+          })}
         </div>
       </div>
     </section>
@@ -297,14 +308,14 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
       <SectionIntro number="02" label="Technology" title={<>Build a Technology<br /><em>Operating System.</em></>} body="Manage priorities, architecture, delivery, reliability, security, data, and cost as one connected system. The goal is not more activity. The goal is dependable technology that produces measurable business outcomes." dark />
       <div className="technology-foundations">
         {[
-          [FileText, "01", "Strategy & Portfolio", "Convert business priorities into an outcome-based roadmap with owners, dependencies, architecture decisions, funding, and measurable success criteria."],
-          [Network, "02", "Architecture & Integration", "Define service boundaries, API and event contracts, data ownership, idempotency, integration standards, and provider abstraction."],
-          [RocketLaunch, "03", "Delivery & Release", "Use small changes, automated tests, continuous delivery, feature controls, release gates, rollback plans, and support readiness."],
-          [ShieldCheck, "04", "Reliability & Security", "Set service objectives, monitor error budgets, instrument critical journeys, manage incidents, and embed secure development practices."],
-          [Database, "05", "Data & Intelligence", "Control lineage, access, retention, approved sources, model evaluation, human review, and cost for localized intelligence."],
-        ].map(([Icon, num, title, body]) => {
+          [FileText, "Strategy & Portfolio", "Convert business priorities into an outcome-based roadmap with owners, dependencies, architecture decisions, funding, and measurable success criteria."],
+          [Network, "Architecture & Integration", "Define service boundaries, API and event contracts, data ownership, idempotency, integration standards, and provider abstraction."],
+          [RocketLaunch, "Delivery & Release", "Use small changes, automated tests, continuous delivery, feature controls, release gates, rollback plans, and support readiness."],
+          [ShieldCheck, "Reliability & Security", "Set service objectives, monitor error budgets, instrument critical journeys, manage incidents, and embed secure development practices."],
+          [Database, "Data & Intelligence", "Control lineage, access, retention, approved sources, model evaluation, human review, and cost for localized intelligence."],
+        ].map(([Icon, title, body]) => {
           const TechIcon = Icon as typeof FileText;
-          return <article key={num as string}><div className="technology-card-head"><span>{num as string}</span><TechIcon size={30} weight="duotone" /></div><h3>{title as string}</h3><p>{body as string}</p></article>;
+          return <article key={title as string}><div className="technology-card-head"><TechIcon size={34} weight="duotone" /></div><h3>{title as string}</h3><p>{body as string}</p></article>;
         })}
       </div>
 
@@ -312,10 +323,10 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
         <div className="technology-reporting-intro"><ChartLineUp size={34} weight="duotone" /><p className="mini-label">Technology Performance</p><h3>Report technology as business performance.</h3><p>Baseline each service first. Then set targets that balance delivery speed, stability, security, economics, and customer impact.</p></div>
         <div className="technology-measures">
           {[
-            ["Delivery Flow", ["Change lead time", "Deployment frequency", "Failed deployment recovery time", "Change fail rate", "Deployment rework rate"]],
-            ["Reliability", ["SLO attainment", "Availability", "Critical incidents", "Detection and recovery time", "Customer-impact minutes"]],
-            ["Security & Risk", ["Critical findings", "Remediation age", "Access reviews", "Third-party risk", "Control exceptions"]],
-            ["Economics & Adoption", ["Cloud cost per transaction", "Vendor spend", "Feature adoption", "Automation time saved", "Intelligence cost per task"]],
+            ["Delivery Flow", ["Change Lead Time", "Deployment Frequency", "Failed Deployment Recovery Time", "Change Fail Rate", "Deployment Rework Rate"]],
+            ["Reliability", ["Service Level Objective Attainment", "Availability", "Critical Incidents", "Detection And Recovery Time", "Customer-Impact Minutes"]],
+            ["Security & Risk", ["Critical Findings", "Remediation Age", "Access Reviews", "Third-Party Risk", "Control Exceptions"]],
+            ["Economics & Adoption", ["Cloud Cost Per Transaction", "Vendor Spend", "Feature Adoption", "Automation Time Saved", "Intelligence Cost Per Task"]],
           ].map(([title, metrics]) => <article key={title as string}><h4>{title as string}</h4>{(metrics as string[]).map(metric => <span key={metric}>{metric}</span>)}</article>)}
         </div>
       </div>
@@ -330,6 +341,28 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
           ].map(([frequency, title, body]) => <article key={frequency}><span>{frequency}</span><h4>{title}</h4><p>{body}</p></article>)}
         </div>
       </div>
+
+      <div className="follow-sun-system">
+        <div className="follow-sun-intro">
+          <div><SunHorizon size={38} weight="duotone" /><p className="mini-label">Follow-the-Sun Support Model</p></div>
+          <h3>Keep service moving while the company sleeps.</h3>
+          <p>Australia, Vietnam, and Austin form the continuous support spine. Each region closes its day with a written handoff containing current status, customer impact, next action, owner, deadline, risk, and escalation context.</p>
+        </div>
+        <div className="follow-sun-map" aria-label="Global follow-the-sun operating model">
+          <img src={`${basePath}/brand/geographic-strategy-reference.png`} alt="World map showing GPOST operating and target-market locations" />
+          <article className="follow-sun-node austin"><Headset size={24} weight="duotone" /><b>Austin</b><span>Operations & Support</span></article>
+          <article className="follow-sun-node vietnam"><Code size={24} weight="duotone" /><b>Vietnam</b><span>Development & Support</span></article>
+          <article className="follow-sun-node australia"><GlobeHemisphereWest size={24} weight="duotone" /><b>Australia</b><span>Executive Leadership & Existing Market</span></article>
+          <article className="follow-sun-node kenya"><Target size={23} weight="duotone" /><b>Kenya</b><span>First New Target Market</span></article>
+          <article className="follow-sun-node latin-america"><Target size={23} weight="duotone" /><b>Latin America</b><span>First New Target Market</span></article>
+        </div>
+        <div className="follow-sun-handoffs">
+          <article><span>01</span><b>Australia → Vietnam</b><p>Australia hands leadership decisions and existing-market context to Vietnam for the development and support day.</p></article>
+          <article><span>02</span><b>Vietnam → Austin</b><p>Vietnam hands releases, defects, monitoring, and open support issues to Austin as the U.S. operating day begins.</p></article>
+          <article><span>03</span><b>Austin → Australia</b><p>Austin hands operating status, escalations, and customer impact to Australia for executive action and the next support cycle.</p></article>
+        </div>
+        <div className="follow-sun-anchor"><ClockCountdown size={28} weight="duotone" /><div><span>Three-Team Anchor Window</span><b>Austin 6:00–7:00 PM · Vietnam 6:00–7:00 AM next day · Australia East 9:00–10:00 AM next day</b><small>Use for high-priority decisions and cross-team coordination. Shift seasonally for daylight saving.</small></div></div>
+      </div>
       <p className="strategy-source-line">Operating references: <a href="https://dora.dev/guides/dora-metrics/" target="_blank" rel="noreferrer">DORA delivery metrics <Arrow /></a><a href="https://sre.google/workbook/implementing-slos/" target="_blank" rel="noreferrer">Google SRE service objectives <Arrow /></a><a href="https://csrc.nist.gov/pubs/sp/800/218/final" target="_blank" rel="noreferrer">NIST secure development <Arrow /></a><a href="https://opentelemetry.io/docs/what-is-opentelemetry/" target="_blank" rel="noreferrer">OpenTelemetry observability <Arrow /></a></p>
     </section>
 
@@ -338,10 +371,11 @@ function StrategyView({ basePath, navigate }: { basePath: string; navigate: (id:
       <div className="region-premise"><b>Design every location as a node in one operating system.</b><p>Each node has a clear purpose, named ownership, defined service expectations, and written handoffs to the next team.</p></div>
       <div className="region-model">
         {[
-          ["Austin", "Operating Center", "Company coordination · Business operations · Shared standards · Executive reporting"],
-          ["Kenya", "Product & Payments Node", "Engineering collaboration · Payment integration · Testing · Release support"],
-          ["Vietnam", "Service & Quality Node", "Customer operations · Quality assurance · Monitoring · Issue triage"],
-          ["Australia", "Leadership & Market Node", "Executive alignment · Governance · Market context · Strategic decisions"],
+          ["Austin", "Operations & Support", "Company coordination · Business operations · Shared standards · Customer and service support"],
+          ["Vietnam", "Development & Support", "Product development · Engineering delivery · Release support · Monitoring and issue triage"],
+          ["Australia", "Leadership & Existing Market", "Executive alignment · Governance · Existing-market context · Strategic decisions"],
+          ["Kenya", "First New Target Market", "Market validation · Local partnerships · Payments readiness · Launch learning"],
+          ["Latin America", "First New Target Market", "Market validation · Local partnerships · Service readiness · Launch learning"],
         ].map(([region, role, body], index) => <article key={region}><span>0{index + 1}</span><small>{region}</small><h3>{role}</h3><p>{body}</p></article>)}
       </div>
 
